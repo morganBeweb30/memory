@@ -1,0 +1,38 @@
+
+:root {
+    --vert:#00ce9c;
+}
+
+td {
+    width: 100px;
+    height: 100px;
+    border:1px black solid;
+    background-color: var(--vert);
+}
+#msg {
+    background-color: var(--vert);
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+}
+.cases img {
+    display:none;
+}
+.affich {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
