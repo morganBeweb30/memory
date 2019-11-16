@@ -11,14 +11,14 @@
 function placerCartes() {
 
     let cartes = ['1','1','2','2','3','3','4','4','5','5','6','6'];
-    let ids = ['a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12',]
+    let ids = ['a0','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a1']
    
     for(let i=0;i<cartes.length;i++) {
 
         let j = Math.floor(Math.random() * ids.length);
 
         document.getElementById('msg').innerHTML+=j;       //affiche le tirage
-        document.getElementById(ids[j]).innerHTML='<img class="" src="./captures/jimag'+cartes[i]+'.gif">'
+        document.getElementById(ids[j]).innerHTML='<img id="img'+ids[j]+'" src="./captures/jimag'+cartes[i]+'.gif">';  // 
             //affiche la carte dans la case ids[j] pour vérif
         ids.splice(j,1);                                    //supprime la case remplie
         document.getElementById('msg').innerHTML+=' '+JSON.stringify(ids)+'<br>';      //affiche les cases restatnes pour vérif
@@ -30,10 +30,61 @@ function test(value) {
     console.log(value); //afiche bonjour dans la console
 }
 */
-function montrerUneCarte(value) {
-    document.getElementsByTagName('td')[value].className='affich';
+let cpt=0;
+let premCarte='';
+let tds=document.querySelectorAll('td');
 
-    // vérifier si une autre carte est affichée
+function montrerUneCarte(value) {
+    document.getElementsByTagName('td')[value].className='affich vert';
+    let idValue='imga'+value;
+
+    cpt+=1;
+    if(cpt%2!=0) {     // 1 carte retournée
+        document.getElementById('msg').innerHTML=value;
+        premCarte=document.getElementById(idValue).src;
+        //        premCarte=document.getElementById('img'+value).src;
+//        let cellText = document.getElementsByTagName('td')[value];
+        document.getElementById('msg').innerHTML+=' variable premCarte : '+premCarte;
+        
+//        document.getElementById('msg').innerHTML+=' '+cpt+' clicks, cliquer sur une autre cartes';
+    } else {
+//        document.getElementById('msg').innerHTML=cpt+' clicks, tester si mêmes cartes';
+        premCarte=false;
+        document.getElementById('msg').innerHTML=premCarte+' ';
+    }
+    /*
+    let valeur=value;
+    document.getElementById('msg').innerHTML = valeur;
+    */
+    /*
+    // enregistrer td cliqué dans variable prov PremCarte
+    function marquerCarte() {
+        premCarte=true;
+        document.getElementById('msg').innerHTML=premCarte+' ';
+    }
+    marquerCarte();
+
+
+//    document.getElementById('msg').innerHTML=cpt+' clicks';
+
+    // vérifier si une autre carte est affichée : %2=0?'oui':'non';
+    /*
+        // si var premCarte=false alors retourner les cartes
+
+        // si var premCarte=true alors supprimer les 2 cartes
+
+        
+        /*
+        for(let m=0;m<tds.length;m++) {
+            if(m==value) {
+                m++;
+            }
+            // trouver si td != value contient class:'affich'
+            let  document.getElementsByTagName('td').className('affich');
+        }
+        */
+        // comparer value à #td
+    // }
 
     // si non : afficher dans div#msg "Cliquer une autre carte"
 
@@ -44,11 +95,7 @@ function montrerUneCarte(value) {
 
 }
 
-function compteur() {
-    let cpt=0;
-    cpt+=1;
-    document.getElementById('msg').innerHTML=cpt+' clicks';
-}
+
 
 
 
