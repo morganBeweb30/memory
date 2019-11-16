@@ -32,6 +32,7 @@ function test(value) {
 */
 let cpt=0;
 let premCarte='';
+let deuzCarte='';
 let tds=document.querySelectorAll('td');
 
 function montrerUneCarte(value) {
@@ -39,18 +40,13 @@ function montrerUneCarte(value) {
     let idValue='imga'+value;
 
     cpt+=1;
-    if(cpt%2!=0) {     // 1 carte retournée
-        document.getElementById('msg').innerHTML=value;
-        premCarte=document.getElementById(idValue).src;
-        //        premCarte=document.getElementById('img'+value).src;
-//        let cellText = document.getElementsByTagName('td')[value];
-        document.getElementById('msg').innerHTML+=' variable premCarte : '+premCarte;
-        
-//        document.getElementById('msg').innerHTML+=' '+cpt+' clicks, cliquer sur une autre cartes';
+    document.getElementById('msg').innerHTML=value; // value de la case
+    if(cpt%2!==0) {     // 1 carte retournée
+        premCarte=document.getElementById(idValue).src; // chemin de l'image de la case cliquée dans variable premCarte
+        document.getElementById('msg').innerHTML+=' '+premCarte+' cliquer sur une autre carte';
     } else {
-//        document.getElementById('msg').innerHTML=cpt+' clicks, tester si mêmes cartes';
-        premCarte=false;
-        document.getElementById('msg').innerHTML=premCarte+' ';
+        deuzCarte=document.getElementById(idValue).src; // chemin de l'image de la case cliquée dans variable deuzCarte
+        document.getElementById('msg').innerHTML+=' '+deuzCarte+' tester les 2 cartes';
     }
     /*
     let valeur=value;
