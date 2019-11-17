@@ -27,7 +27,7 @@ let deuzCase='';
 let premCarte='';
 let deuzCarte='';
 let tds=document.querySelectorAll('td');
-let cartesTrouvees = [];
+let cartesTrouvees = 0;
 
 function montrerUneCarte(value) {
     document.getElementsByTagName('td')[value].className='affich vert';
@@ -51,8 +51,10 @@ function montrerUneCarte(value) {
 
         // si pas les mêmes : les recacher
         if(premCarte !== deuzCarte) {
+            document.getElementById('msg').innerHTML+='<button id="cacherCartes" onclick="cacherCartes()">Cacher</button>';
             document.getElementById('msg').innerHTML+=' '+premCarte+' != '+deuzCarte+' les 2 cartes sont !=';
         } else {    //si les mêmes : les supprimer, ajouter 2 à la variable (array) cartesTrouvees, et vérif si array cartesTrouvees.length === 12.
+            document.getElementById('msg').innerHTML+='<button id="supprCartes" onclick="supprCartes()">Enlever</button>';
             document.getElementById('msg').innerHTML+=' '+premCarte+' = '+deuzCarte+' les 2 cartes sont =';
         }
         
@@ -64,20 +66,21 @@ function montrerUneCarte(value) {
 function cacherCartes() {
     premCase.className='cases vert';
     deuzCase.className='cases vert';
-//            document.getElementsByTagName('td')[value].className='cases vert';
 }
 
-let casesSupprimees=0;
 function supprCartes() {
-    casesSupprimees+=2;
-    premCase.img.src.innerHTML='<img src="./captures/jimag00.gif">';
+    cartesTrouvees+=2;
     premCase.className='finie';
-    deuzCase.img.src.innerHTML='<img src="./captures/jimag00.gif">';
+    premCase.innerHTML='<img src="./captures/jimag00.png">';
     deuzCase.className='finie';
+    deuzCase.innerHTML='<img src="./captures/jimag00.png">';
     // Vérifier si il reste des cartes sur le plateau (casesSupprimees==12) :
-    if(casesSupprimees==12) {
+    if(cartesTrouvees==12) {
         // afficher "partie gagnée"
         document.getElementById('msg').innerHTML='Partie gagnée, Bravo !<br> :)';
+//        document.getElementById('msg').innerHTML+='<button id="nouvPartie" onclick="placerCartes();">Nouvelle partie</button>';
+    } else {
+        document.getElementById('msg').innerHTML='cases supprimées : '+cartesTrouvees;
     }
 }
 
