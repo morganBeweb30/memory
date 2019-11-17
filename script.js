@@ -1,17 +1,8 @@
-/*
-    let c1="1";
-    let c2="2";
-    let c3="3";
-    let c4="4";
-    let c5="5";
-    let c6="6";
-*/
-
 
 function placerCartes() {
 
     let cartes = ['1','1','2','2','3','3','4','4','5','5','6','6'];
-    let ids = ['a0','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a1']
+    let ids = ['a0','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11']
    
     for(let i=0;i<cartes.length;i++) {
 
@@ -31,65 +22,67 @@ function test(value) {
 }
 */
 let cpt=0;
+let premCase='';
+let deuzCase='';
 let premCarte='';
 let deuzCarte='';
 let tds=document.querySelectorAll('td');
+let cartesTrouvees = [];
 
 function montrerUneCarte(value) {
     document.getElementsByTagName('td')[value].className='affich vert';
-    let idValue='imga'+value;
+    let imgIdValue='imga'+value;
+    let tdIdValue='a'+value;
+    
+    document.getElementById('msg').innerHTML=value;
 
     cpt+=1;
-    document.getElementById('msg').innerHTML=value; // value de la case
+    document.getElementById('msg').innerHTML+=premCase; // value de la case
     if(cpt%2!==0) {     // 1 carte retournée
-        premCarte=document.getElementById(idValue).src; // chemin de l'image de la case cliquée dans variable premCarte
+        premCase=document.getElementById(tdIdValue);
+        premCarte=document.getElementById(imgIdValue).src; // chemin de l'image de la case cliquée dans variable premCarte
         document.getElementById('msg').innerHTML+=' '+premCarte+' cliquer sur une autre carte';
+        document.getElementById('msg').innerHTML+=' case : '+premCase+'<br>';
     } else {
-        deuzCarte=document.getElementById(idValue).src; // chemin de l'image de la case cliquée dans variable deuzCarte
+        deuzCase=document.getElementById(tdIdValue);
+        deuzCarte=document.getElementById(imgIdValue).src; // chemin de l'image de la case cliquée dans variable deuzCarte
         document.getElementById('msg').innerHTML+=' '+deuzCarte+' tester les 2 cartes';
-    }
-    /*
-    let valeur=value;
-    document.getElementById('msg').innerHTML = valeur;
-    */
-    /*
-    // enregistrer td cliqué dans variable prov PremCarte
-    function marquerCarte() {
-        premCarte=true;
-        document.getElementById('msg').innerHTML=premCarte+' ';
-    }
-    marquerCarte();
+        document.getElementById('msg').innerHTML+=' case : '+deuzCase+'<br>';
 
-
-//    document.getElementById('msg').innerHTML=cpt+' clicks';
-
-    // vérifier si une autre carte est affichée : %2=0?'oui':'non';
-    /*
-        // si var premCarte=false alors retourner les cartes
-
-        // si var premCarte=true alors supprimer les 2 cartes
-
-        
-        /*
-        for(let m=0;m<tds.length;m++) {
-            if(m==value) {
-                m++;
-            }
-            // trouver si td != value contient class:'affich'
-            let  document.getElementsByTagName('td').className('affich');
+        // si pas les mêmes : les recacher
+        if(premCarte !== deuzCarte) {
+            document.getElementById('msg').innerHTML+=' '+premCarte+' != '+deuzCarte+' les 2 cartes sont !=';
+        } else {    //si les mêmes : les supprimer, ajouter 2 à la variable (array) cartesTrouvees, et vérif si array cartesTrouvees.length === 12.
+            document.getElementById('msg').innerHTML+=' '+premCarte+' = '+deuzCarte+' les 2 cartes sont =';
         }
-        */
-        // comparer value à #td
-    // }
-
-    // si non : afficher dans div#msg "Cliquer une autre carte"
-
-    //si oui : comparer les 2 images affichées
-        // si c'est les mêmes : supprimer les 2 images
-
-        // si c'est pas les mêmes, les cacher et afficher le vert
-
+        
+            // si cartesTrouvees.length !== 12 : afficher "cliquer sur une carte"
+            // si cartesTrouvees.length === 12 : afficher "gagné"
+    }
 }
+
+function cacherCartes() {
+    premCase.className='cases vert';
+    deuzCase.className='cases vert';
+//            document.getElementsByTagName('td')[value].className='cases vert';
+}
+
+let casesSupprimees=0;
+function supprCartes() {
+    casesSupprimees+=2;
+    premCase.img.src.innerHTML='<img src="./captures/jimag00.gif">';
+    premCase.className='finie';
+    deuzCase.img.src.innerHTML='<img src="./captures/jimag00.gif">';
+    deuzCase.className='finie';
+    // Vérifier si il reste des cartes sur le plateau (casesSupprimees==12) :
+    if(casesSupprimees==12) {
+        // afficher "partie gagnée"
+        document.getElementById('msg').innerHTML='Partie gagnée, Bravo !<br> :)';
+    }
+}
+
+
+
 
 
 
