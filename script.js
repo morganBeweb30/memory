@@ -1,7 +1,8 @@
 
 function placerCartes() {
     document.getElementById('gagne').className='d-none';
-//    document.getElementById('table').className='d-block';
+    document.getElementById('table').className='';
+    document.getElementsByTagName('td').className='cases vert';
     document.getElementById('overlay').className='heigth0';
     let cartes = ['1','1','2','2','3','3','4','4','5','5','6','6'];
     let ids = ['a0','a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11']
@@ -48,14 +49,16 @@ function montrerUneCarte(value) {
         document.getElementById('msg').innerHTML='Cliquer sur une autre carte';
 //        document.getElementById('msg').innerHTML+=' '+premCarte+' cliquer sur une autre carte';
 //        document.getElementById('msg').innerHTML+=' case : '+premCase+'<br>';
-    } else {
+    } else {    /**** mettre 1 seconde avant overlay ****/
         deuzCase=document.getElementById(tdIdValue);
         deuzCarte=document.getElementById(imgIdValue).src; // chemin de l'image de la case cliquée dans variable deuzCarte
         document.getElementById('msg').innerHTML='Test des 2 cartes';
 //        document.getElementById('msg').innerHTML+=' '+deuzCarte+' tester les 2 cartes';
 //        document.getElementById('msg').innerHTML+=' case : '+deuzCase+'<br>';
-        document.getElementById('overlay').className='height400';   // interdire clic sur tableau
-
+        myVar = setTimeout(blocClic, 500);
+        function blocClic() {
+            document.getElementById('overlay').className='height400';   // interdire clic sur tableau
+        }
         // si pas les mêmes : les recacher
         if(premCarte !== deuzCarte) {
             document.getElementById('cacherCartes').className='d-block';
@@ -68,7 +71,6 @@ function montrerUneCarte(value) {
         }
     }
 }
-
 function cacherCartes() {
     premCase.className='cases vert';
     deuzCase.className='cases vert';
@@ -76,7 +78,6 @@ function cacherCartes() {
     document.getElementById('cacherCartes').className='d-none';
     document.getElementById('msg').innerHTML=' ';
 }
-
 function supprCartes() {
     cartesTrouvees+=2;
     cartesRestantes=12-cartesTrouvees;
@@ -99,7 +100,7 @@ function supprCartes() {
 }
 
 
-
+/**** mettre 1 seconde avant overlay ****/
 
 
 
