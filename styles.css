@@ -11,9 +11,9 @@ td {
 }
 #msg {
     background-color: var(--vert);
-    width: 200px;
+    width: 400px;
     height: 200px;
-    margin-top: 50px;
+    margin: 50px auto;
 }
 .cases img {
     display:none;
@@ -21,6 +21,57 @@ td {
 .affich {
 /*    display: block;       */
 }
+h1 {
+    text-align: center;
+}
+button {
+    margin:50px auto;
+    width: 200px;
+    height: 40px;
+    display: block;
+    font-size: 1.1em;
+}
+#plateau {
+    margin: 100px auto;
+    width: 40%;
+}
+table {
+    margin: 0 auto;
+    z-index: 100;
+}
+#gagne {
+    margin: 0 auto;
+}
+.d-none {
+    display: none;
+}
+.d-block {
+    display: block;
+}
+.index-1000 {
+    z-index: 0;
+}
+.index1000 {
+    z-index: 1000;
+}
+
+#overlay {
+    background-color: rgba(255,255,255,.8);
+    width: 600px;
+    z-index: 1000;
+    filter: blur(2px);
+    position: absolute;
+    top: 100px;
+}
+.height0 {
+    height: 0px;
+}
+.height400 {
+    height: 400px;
+}
+
+
+
 
 
 
